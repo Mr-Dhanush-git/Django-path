@@ -7,6 +7,14 @@
 <body>
 
     {%  include  'navbar.html' %}
+
+    {% if messages %}
+    <ul class="messages">
+        {% for msg in  messages %}
+        <li>{{msg}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     
     {% block content %}
 
