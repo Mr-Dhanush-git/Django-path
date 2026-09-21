@@ -21,6 +21,7 @@
             {% for msg in room_msgs %}
             <div>
                 {% if request.user == msg.user %}
+                {% csrf_token %}
                 <a href="{% url 'delete-message' msg.id %}">Delete</a>
                 {% endif %}
                 <small>@{{msg.user}}  {{msg.created | timesince}} ago</small>
