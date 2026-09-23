@@ -109,6 +109,14 @@ def room(request , pk):
     context = {'room':room , 'room_msgs' : room_msgs , 'roommates' : roommates}
     return render(request,'basic/room.html', context)
 
+def userProfile(request,pk):
+    user = User.objects.get(id = pk)
+    rooms = user.room_set.all()
+    room_messages = user.message_set.all()
+    topics = Topic.objects.all()
+    context = {'user' : user , 'rooms' : rooms ,'room_messages' : room_messages , "topics" : topics}
+    return render(request , 'basic/profile.html', context)
+
 @login_required(login_url = 'login')
 def createRoom(request):
     form = RoomForm()
